@@ -6,3 +6,5 @@ dist/
 htmlcov/
 .coverage
 coverage.xml
+.env
+db*
