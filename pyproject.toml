@@ -3,6 +3,9 @@ name = "hexlet-code"
 version = "0.1.0"
 description = ""
 authors = ["zavr1k <zavr35rus@gmail.com>"]
+packages = [
+    {include = "tasks_manager"},
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -13,6 +16,9 @@ dj-database-url = "^0.5.0"
 psycopg2 = "^2.8.6"
 
 [tool.poetry.dev-dependencies]
+flake8 = "^3.9.2"
+coverage = "^5.5"
+pytest = "^6.2.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
