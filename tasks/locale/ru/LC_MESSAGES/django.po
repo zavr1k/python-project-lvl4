@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-05 20:37+0300\n"
+"POT-Creation-Date: 2021-07-06 22:57+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,33 +20,35 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: tasks/forms.py:9 tasks/forms.py:11
+#: tasks/forms.py:9 tasks/forms.py:12
 msgid "First name"
 msgstr "Имя"
 
-#: tasks/forms.py:13 tasks/forms.py:15
+#: tasks/forms.py:14 tasks/forms.py:17
 msgid "Second name"
 msgstr "Фамилия"
 
-#: tasks/forms.py:17
-#, fuzzy
-#| msgid "User name"
-msgid "username"
-msgstr "Имя пользователя"
-
-#: tasks/forms.py:19
+#: tasks/forms.py:19 tasks/forms.py:22
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: tasks/forms.py:21 tasks/forms.py:23 tasks/forms.py:25
+#: tasks/forms.py:24 tasks/forms.py:30 tasks/forms.py:32
 msgid "Password"
 msgstr "Пароль"
 
-#: tasks/forms.py:27
+#: tasks/forms.py:26
+msgid "Password must contain at least 8 characters"
+msgstr "Пароль должен содержать минимум 8 символов"
+
+#: tasks/forms.py:34
+msgid "To confirm, please enter the password again"
+msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
+
+#: tasks/forms.py:38
 msgid "Password confirmation"
 msgstr "Подтверждение пароля"
 
-#: tasks/templates/tasks/nav.html:3 tasks/views.py:15
+#: tasks/templates/tasks/nav.html:3 tasks/views.py:14
 msgid "Task manager"
 msgstr "Менеджер задач"
 
@@ -58,7 +60,12 @@ msgstr "Пользователи"
 msgid "Login"
 msgstr "Войти"
 
-#: tasks/templates/tasks/nav.html:19 tasks/templates/tasks/register.html:16
+#: tasks/templates/tasks/nav.html:19 tasks/templates/tasks/register.html:11
 #: tasks/views.py:26
 msgid "Register"
 msgstr "Регистрация"
+
+#, fuzzy
+#~| msgid "User name"
+#~ msgid "username"
+#~ msgstr "Имя пользователя"

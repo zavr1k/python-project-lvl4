@@ -23,16 +23,16 @@ class RegisterUserForm(UserCreationForm):
     password1 = forms.CharField(max_length=50,
                                 label=_('Password'),
                                 min_length=3,
-                                help_text='Пароль должен содержать '
-                                          'минимум 8 символов',
+                                help_text=_('Password must contain '
+                                            'at least 8 characters'),
                                 widget=forms.PasswordInput(attrs={
                                     'class': 'form-control',
                                     'placeholder': _('Password')}))
     password2 = forms.CharField(max_length=50,
                                 label=_('Password'),
                                 min_length=3,
-                                help_text='Для подтверждения введите, '
-                                          'пожалуйста, пароль ещё раз.',
+                                help_text=_('To confirm, please enter '
+                                            'the password again'),
                                 widget=forms.PasswordInput(attrs={
                                     'class': 'form-control',
                                     'placeholder': _('Password confirmation')
