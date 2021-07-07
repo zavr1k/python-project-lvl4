@@ -1,4 +1,4 @@
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
@@ -27,6 +27,11 @@ class RegisterUser(CreateView):
         context = super(RegisterUser, self).get_context_data(**kwargs)
         context['title'] = _('Register')
         return context
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('home')
 
 
 class LoginUser(LoginView):
