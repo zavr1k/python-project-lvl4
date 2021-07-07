@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-06 22:57+0300\n"
+"POT-Creation-Date: 2021-07-07 09:20+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,7 +48,11 @@ msgstr "Для подтверждения введите, пожалуйста, 
 msgid "Password confirmation"
 msgstr "Подтверждение пароля"
 
-#: tasks/templates/tasks/nav.html:3 tasks/views.py:14
+#: tasks/templates/tasks/login.html:11 tasks/templates/tasks/nav.html:21
+msgid "Login"
+msgstr "Войти"
+
+#: tasks/templates/tasks/nav.html:3 tasks/views.py:16
 msgid "Task manager"
 msgstr "Менеджер задач"
 
@@ -56,14 +60,18 @@ msgstr "Менеджер задач"
 msgid "Users"
 msgstr "Пользователи"
 
-#: tasks/templates/tasks/nav.html:16
-msgid "Login"
-msgstr "Войти"
+#: tasks/templates/tasks/nav.html:17
+msgid "Logout"
+msgstr "Выйти"
 
-#: tasks/templates/tasks/nav.html:19 tasks/templates/tasks/register.html:11
-#: tasks/views.py:26
+#: tasks/templates/tasks/nav.html:24 tasks/templates/tasks/register.html:11
+#: tasks/views.py:28
 msgid "Register"
 msgstr "Регистрация"
+
+#: tasks/views.py:38
+msgid "Authentication"
+msgstr "Вход"
 
 #, fuzzy
 #~| msgid "User name"
