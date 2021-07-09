@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-07 09:20+0300\n"
+"POT-Creation-Date: 2021-07-09 21:26+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr "Имя"
 msgid "Second name"
 msgstr "Фамилия"
 
-#: tasks/forms.py:19 tasks/forms.py:22
+#: tasks/forms.py:19 tasks/forms.py:22 tasks/templates/tasks/user_list.html:13
 msgid "Username"
 msgstr "Имя пользователя"
 
@@ -48,32 +48,75 @@ msgstr "Для подтверждения введите, пожалуйста, 
 msgid "Password confirmation"
 msgstr "Подтверждение пароля"
 
-#: tasks/templates/tasks/login.html:11 tasks/templates/tasks/nav.html:21
+#: tasks/templates/tasks/delete_user.html:10
+msgid "Are you sure thar you want to delete user?"
+msgstr "Вы уверены что хотите удалить пользователя?"
+
+#: tasks/templates/tasks/delete_user.html:11
+msgid "Yes, I want"
+msgstr "Да, хочу"
+
+#: tasks/templates/tasks/login.html:11 tasks/templates/tasks/nav.html:24
 msgid "Login"
 msgstr "Войти"
 
-#: tasks/templates/tasks/nav.html:3 tasks/views.py:16
+#: tasks/templates/tasks/nav.html:3 tasks/views.py:65
 msgid "Task manager"
 msgstr "Менеджер задач"
 
-#: tasks/templates/tasks/nav.html:11
+#: tasks/templates/tasks/nav.html:11 tasks/views.py:23
 msgid "Users"
 msgstr "Пользователи"
 
-#: tasks/templates/tasks/nav.html:17
+#: tasks/templates/tasks/nav.html:20
 msgid "Logout"
 msgstr "Выйти"
 
-#: tasks/templates/tasks/nav.html:24 tasks/templates/tasks/register.html:11
-#: tasks/views.py:28
+#: tasks/templates/tasks/nav.html:27 tasks/templates/tasks/register.html:11
+#: tasks/views.py:77
 msgid "Register"
 msgstr "Регистрация"
 
-#: tasks/views.py:38
+#: tasks/templates/tasks/update_user.html:11
+msgid "Update"
+msgstr "Обновить"
+
+#: tasks/templates/tasks/user_list.html:14
+#, fuzzy
+msgid "Full name"
+msgstr "Полное имя"
+
+#: tasks/templates/tasks/user_list.html:15
+#, fuzzy
+msgid "Date of registration"
+msgstr "Дата ругистрации"
+
+#: tasks/templates/tasks/user_list.html:27
+msgid "Change"
+msgstr "Изменить"
+
+#: tasks/templates/tasks/user_list.html:29
+msgid "Delete"
+msgstr "Удалить"
+
+#: tasks/views.py:34
+#, fuzzy
+#| msgid "Username"
+msgid "User change"
+msgstr "Изменение пользователя"
+
+#: tasks/views.py:39 tasks/views.py:56
+msgid "You are not allowed change other users"
+msgstr "Вам нельзя изменять других пользователей"
+
+#: tasks/views.py:51
+msgid "Delete user"
+msgstr "Удалить пользователя"
+
+#: tasks/views.py:92
 msgid "Authentication"
 msgstr "Вход"
 
 #, fuzzy
-#~| msgid "User name"
 #~ msgid "username"
 #~ msgstr "Имя пользователя"

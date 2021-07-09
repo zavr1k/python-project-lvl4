@@ -1,0 +1,36 @@
+{% extends 'tasks/base.html' %}
+{% load bootstrap4 %}
+{% load i18n %}
+{% block title %} {{ title }} {% endblock %}
+{% block content %}
+<div class="container wrapper flex-grow-1">
+    <h1 class="my-4">{{ title }}</h1>
+    <h3>{% bootstrap_messages %}</h3>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">{% translate 'Username' %}</th>
+            <th scope="col">{% translate 'Full name' %}</th>
+            <th scope="col">{% translate 'Date of registration' %}</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+        <tr>
+            <th>{{ user.pk }}</th>
+            <th>{{ user.username }}</th>
+            <th>{{ user.get_full_name }}</th>
+            <th>{{ user.date_joined|date:"d-m-Y" }}</th>
+            <th>
+                <a href="{% url 'change_user' user.pk %}">{% translate 'Change' %}</a>
+                <br>
+                <a href="{% url 'delete_user' user.pk %}">{% translate 'Delete' %}</a>
+            </th>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
