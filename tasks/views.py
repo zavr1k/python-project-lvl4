@@ -40,6 +40,10 @@ class UpdateUser(LoginRequiredMixin, UpdateView):
             return redirect('user_list')
         return super(UpdateUser, self).dispatch(request, *args, **kwargs)
 
+    def get_success_url(self):
+        messages.success(self.request, _('User changed successfully'))
+        return reverse_lazy('user_list')
+
 
 class DeleteUser(LoginRequiredMixin, DeleteView):
     model = User
@@ -56,6 +60,10 @@ class DeleteUser(LoginRequiredMixin, DeleteView):
             messages.error(self.request, _("You are not allowed change other users"))
             return redirect('user_list')
         return super(DeleteUser, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        messages.success(self.request, _("User successfully deleted"))
+        return reverse_lazy('user_list')
 
 
 class Home(View):
@@ -77,11 +85,6 @@ class RegisterUser(CreateView):
         context['title'] = _('Register')
         return context
 
-    def form_valid(self, form):
-        user = form.save()
-        login(self.request, user)
-        return redirect('home')
-
 
 class LoginUser(LoginView):
     form = AuthenticationForm
@@ -93,9 +96,11 @@ class LoginUser(LoginView):
         return context
 
     def get_success_url(self):
-        return reverse_lazy('home')
+        messages.success(self.request, _('You are logged in'))
+        return reverse_lazy('main')
 
 
 def logout_user(request):
     logout(request)
-    return redirect('login')
+    messages.info(request, _('You are successfully logged out'))
+    return redirect('main')
