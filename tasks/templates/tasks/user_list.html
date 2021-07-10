@@ -5,29 +5,28 @@
 {% block content %}
 <div class="container wrapper flex-grow-1">
     <h1 class="my-4">{{ title }}</h1>
-    <h3>{% bootstrap_messages %}</h3>
     <table class="table table-striped">
-        <thead class="thead-dark">
+        <thead class="table-dark">
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">{% translate 'Username' %}</th>
-            <th scope="col">{% translate 'Full name' %}</th>
-            <th scope="col">{% translate 'Date of registration' %}</th>
-            <th scope="col"></th>
+            <th>ID</th>
+            <th>{% translate 'Username' %}</th>
+            <th>{% translate 'Full name' %}</th>
+            <th>{% translate 'Date of registration' %}</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
         {% for user in users %}
         <tr>
-            <th>{{ user.pk }}</th>
-            <th>{{ user.username }}</th>
-            <th>{{ user.get_full_name }}</th>
-            <th>{{ user.date_joined|date:"d-m-Y" }}</th>
-            <th>
+            <td>{{ user.pk }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.get_full_name }}</td>
+            <td>{{ user.date_joined|date:"d-m-Y" }}</td>
+            <td>
                 <a href="{% url 'change_user' user.pk %}">{% translate 'Change' %}</a>
                 <br>
                 <a href="{% url 'delete_user' user.pk %}">{% translate 'Delete' %}</a>
-            </th>
+            </td>
         </tr>
         {% endfor %}
         </tbody>
