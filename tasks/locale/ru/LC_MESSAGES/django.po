@@ -89,7 +89,7 @@ msgstr "Полное имя"
 #: tasks/templates/tasks/user_list.html:15
 #, fuzzy
 msgid "Date of registration"
-msgstr "Дата ругистрации"
+msgstr "Дата рeгистрации"
 
 #: tasks/templates/tasks/user_list.html:27
 msgid "Change"
