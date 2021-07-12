@@ -21,7 +21,11 @@ class TestUser(TestCase):
             }
         )
         self.assertRedirects(self.response, reverse_lazy('login'))
-        self.assertTrue(User.objects.get(username='zavr', first_name='Anton', last_name='Semenov'))
+        self.assertTrue(User.objects.get(
+            username='zavr',
+            first_name='Anton',
+            last_name='Semenov'
+        ))
 
     def test_update_user(self):
         self.client.login(username='test', password='asdf9jkl')

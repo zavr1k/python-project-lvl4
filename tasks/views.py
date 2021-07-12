@@ -1,4 +1,4 @@
-from django.contrib.auth import logout, login
+from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
@@ -36,7 +36,10 @@ class UpdateUser(LoginRequiredMixin, UpdateView):
 
     def dispatch(self, request, *args, **kwargs):
         if kwargs['pk'] != self.request.user.pk:
-            messages.error(self.request, _("You are not allowed change other users"))
+            messages.error(
+                self.request,
+                _("You are not allowed change other users"),
+            )
             return redirect('user_list')
         return super(UpdateUser, self).dispatch(request, *args, **kwargs)
 
@@ -57,7 +60,10 @@ class DeleteUser(LoginRequiredMixin, DeleteView):
 
     def dispatch(self, request, *args, **kwargs):
         if kwargs['pk'] != self.request.user.pk:
-            messages.error(self.request, _("You are not allowed change other users"))
+            messages.error(
+                self.request,
+                _("You are not allowed change other users"),
+            )
             return redirect('user_list')
         return super(DeleteUser, self).dispatch(request, *args, **kwargs)
 
@@ -89,7 +95,7 @@ class RegisterUser(CreateView):
 class LoginUser(LoginView):
     form = AuthenticationForm
     template_name = 'tasks/login.html'
-    
+
     def get_context_data(self, **kwargs):
         context = super(LoginUser, self).get_context_data(**kwargs)
         context['title'] = _('Authentication')
