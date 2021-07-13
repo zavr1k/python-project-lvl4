@@ -57,7 +57,6 @@ class TestUser(TestCase):
 
 
 class TestStatus(TestCase):
-
     fixtures = ['dbdump.json']
 
     def setUp(self):

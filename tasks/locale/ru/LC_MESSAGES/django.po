@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-09 21:26+0300\n"
+"POT-Creation-Date: 2021-07-13 22:34+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,102 +20,173 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: tasks/forms.py:9 tasks/forms.py:12
-msgid "First name"
+#: tasks/forms.py:22 tasks/templates/tasks/status_list.html:13
+msgid "Name"
 msgstr "Имя"
 
-#: tasks/forms.py:14 tasks/forms.py:17
-msgid "Second name"
-msgstr "Фамилия"
+#: tasks/templates/tasks/delete_status.html:9
+#, fuzzy
+#| msgid "Are you sure thar you want to delete user?"
+msgid "Are you sure that you want to delete the status?"
+msgstr "Вы уверены что хотите удалить статус?"
 
-#: tasks/forms.py:19 tasks/forms.py:22 tasks/templates/tasks/user_list.html:13
-msgid "Username"
-msgstr "Имя пользователя"
-
-#: tasks/forms.py:24 tasks/forms.py:30 tasks/forms.py:32
-msgid "Password"
-msgstr "Пароль"
-
-#: tasks/forms.py:26
-msgid "Password must contain at least 8 characters"
-msgstr "Пароль должен содержать минимум 8 символов"
-
-#: tasks/forms.py:34
-msgid "To confirm, please enter the password again"
-msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
-
-#: tasks/forms.py:38
-msgid "Password confirmation"
-msgstr "Подтверждение пароля"
-
-#: tasks/templates/tasks/delete_user.html:10
-msgid "Are you sure thar you want to delete user?"
-msgstr "Вы уверены что хотите удалить пользователя?"
-
+#: tasks/templates/tasks/delete_status.html:10
 #: tasks/templates/tasks/delete_user.html:11
 msgid "Yes, I want"
 msgstr "Да, хочу"
 
-#: tasks/templates/tasks/login.html:11 tasks/templates/tasks/nav.html:24
+#: tasks/templates/tasks/delete_user.html:10
+#, fuzzy
+#| msgid "Are you sure thar you want to delete user?"
+msgid "Are you sure that you want to delete the user?"
+msgstr "Вы уверены что хотите удалить пользователя?"
+
+#: tasks/templates/tasks/login.html:11 tasks/templates/tasks/nav.html:29
 msgid "Login"
 msgstr "Войти"
 
-#: tasks/templates/tasks/nav.html:3 tasks/views.py:65
+#: tasks/templates/tasks/nav.html:3 tasks/views.py:21
 msgid "Task manager"
 msgstr "Менеджер задач"
 
-#: tasks/templates/tasks/nav.html:11 tasks/views.py:23
+#: tasks/templates/tasks/nav.html:11 tasks/views.py:33
 msgid "Users"
 msgstr "Пользователи"
 
-#: tasks/templates/tasks/nav.html:20
+#: tasks/templates/tasks/nav.html:15 tasks/views.py:123
+msgid "Statuses"
+msgstr "Статусы"
+
+#: tasks/templates/tasks/nav.html:25
 msgid "Logout"
 msgstr "Выйти"
 
-#: tasks/templates/tasks/nav.html:27 tasks/templates/tasks/register.html:11
-#: tasks/views.py:77
+#: tasks/templates/tasks/nav.html:32 tasks/templates/tasks/register.html:11
+#: tasks/views.py:44
 msgid "Register"
 msgstr "Регистрация"
 
-#: tasks/templates/tasks/update_user.html:11
+#: tasks/templates/tasks/status_list.html:8
+msgid "create status"
+msgstr "Создать статус"
+
+#: tasks/templates/tasks/status_list.html:14
+#, fuzzy
+msgid "Date of creation"
+msgstr "Дата рeгистрации"
+
+#: tasks/templates/tasks/status_list.html:25
+#: tasks/templates/tasks/user_list.html:26
+msgid "Change"
+msgstr "Изменить"
+
+#: tasks/templates/tasks/status_list.html:27
+#: tasks/templates/tasks/user_list.html:28
+msgid "Delete"
+msgstr "Удалить"
+
+#: tasks/templates/tasks/update_user.html:11 tasks/views.py:150
 msgid "Update"
 msgstr "Обновить"
 
-#: tasks/templates/tasks/user_list.html:14
+#: tasks/templates/tasks/user_list.html:12
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: tasks/templates/tasks/user_list.html:13
 #, fuzzy
 msgid "Full name"
 msgstr "Полное имя"
 
-#: tasks/templates/tasks/user_list.html:15
+#: tasks/templates/tasks/user_list.html:14
 #, fuzzy
 msgid "Date of registration"
 msgstr "Дата рeгистрации"
 
-#: tasks/templates/tasks/user_list.html:27
-msgid "Change"
-msgstr "Изменить"
-
-#: tasks/templates/tasks/user_list.html:29
-msgid "Delete"
-msgstr "Удалить"
-
-#: tasks/views.py:34
+#: tasks/views.py:55
 #, fuzzy
 #| msgid "Username"
 msgid "User change"
 msgstr "Изменение пользователя"
 
-#: tasks/views.py:39 tasks/views.py:56
+#: tasks/views.py:62 tasks/views.py:86
 msgid "You are not allowed change other users"
 msgstr "Вам нельзя изменять других пользователей"
 
-#: tasks/views.py:51
+#: tasks/views.py:68
+#, fuzzy
+#| msgid "Username"
+msgid "User changed successfully"
+msgstr "Пользователь успешно изменен"
+
+#: tasks/views.py:79
 msgid "Delete user"
 msgstr "Удалить пользователя"
 
 #: tasks/views.py:92
+msgid "User successfully deleted"
+msgstr "Пользователь успешно удален"
+
+#: tasks/views.py:102
 msgid "Authentication"
 msgstr "Вход"
+
+#: tasks/views.py:106
+msgid "You are logged in"
+msgstr "Вы вошли"
+
+#: tasks/views.py:112
+msgid "You are successfully logged out"
+msgstr "Вы успешно разлогинены"
+
+#: tasks/views.py:133
+msgid "Create status"
+msgstr "Создание статуса"
+
+#: tasks/views.py:134
+msgid "Create"
+msgstr "Создать"
+
+#: tasks/views.py:138
+msgid "Status successfully created"
+msgstr "Статус успешно создан"
+
+#: tasks/views.py:149
+#, fuzzy
+#| msgid "Change"
+msgid "Change status"
+msgstr "Изменить статус"
+
+#: tasks/views.py:154
+msgid "Status successfully updated"
+msgstr "Статус успешно обновлен"
+
+#: tasks/views.py:164
+#, fuzzy
+msgid "Delete status"
+msgstr "Удалить статус"
+
+#: tasks/views.py:168
+msgid "Status successfully deleted"
+msgstr "Статус успешно удален"
+
+#~ msgid "First name"
+#~ msgstr "Имя"
+
+#~ msgid "Second name"
+#~ msgstr "Фамилия"
+
+#~ msgid "Password"
+#~ msgstr "Пароль"
+
+#~ msgid "Password must contain at least 8 characters"
+#~ msgstr "Пароль должен содержать минимум 8 символов"
+
+#~ msgid "To confirm, please enter the password again"
+#~ msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
+
+#~ msgid "Password confirmation"
+#~ msgstr "Подтверждение пароля"
 
 #, fuzzy
 #~ msgid "username"
