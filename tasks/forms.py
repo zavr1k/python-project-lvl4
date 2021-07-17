@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm
-from tasks.models import TaskStatus
+from tasks.models import TaskStatus, Task
 from django.utils.translation import gettext_lazy as _
 
 
@@ -21,3 +21,10 @@ class CreateStatusForm(ModelForm):
         labels = {
             'title': _('Name')
         }
+
+
+class CreateTaskForm(ModelForm):
+
+    class Meta:
+        model = Task
+        fields = ('title', 'description', 'executor', 'status')

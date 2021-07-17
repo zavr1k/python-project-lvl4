@@ -5,10 +5,10 @@
 {% block content %}
 <div class="container wrapper flex-grow-1">
     <h1 class="my-4">{{ title }}</h1>
-   <form method="post">
+<form method="post">
     {% csrf_token %}
-    <p class="">{% translate "Are you sure that you want to delete the user?" %}</p>
-    <button class="btn btn-outline-danger" type="submit">{% translate "Yes, I want" %}</button>
-    </form>
+    {% bootstrap_form form %}
+    <button class="btn btn-outline-primary" type="submit">{{ button_text }}</button>
+</form>
 </div>
 {% endblock %}

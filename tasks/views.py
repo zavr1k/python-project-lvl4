@@ -10,8 +10,8 @@ from django.views import View
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib import messages
 
-from tasks.forms import RegisterUserForm, CreateStatusForm
-from tasks.models import TaskStatus
+from tasks.forms import RegisterUserForm, CreateStatusForm, CreateTaskForm
+from tasks.models import TaskStatus, Task
 
 
 class Home(View):
@@ -42,6 +42,7 @@ class RegisterUser(CreateView):
     def get_context_data(self, **kwargs):
         context = super(RegisterUser, self).get_context_data(**kwargs)
         context['title'] = _('Register')
+        context['button_text'] = _('Register')
         return context
 
 
@@ -72,12 +73,12 @@ class UpdateUser(LoginRequiredMixin, UpdateView):
 
 class DeleteUser(LoginRequiredMixin, DeleteView):
     model = User
-    template_name = 'tasks/delete_user.html'
-    success_url = reverse_lazy('user_list')
+    template_name = 'tasks/confirm_delete.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = _('Delete user')
+        context['confirmation'] = _('Are you sure that you want to delete the user?')
         return context
 
     def dispatch(self, request, *args, **kwargs):
@@ -87,7 +88,7 @@ class DeleteUser(LoginRequiredMixin, DeleteView):
                 _("You are not allowed change other users"),
             )
             return redirect('user_list')
-        return super(DeleteUser, self).dispatch(request, *args, **kwargs)
+        return super(DeleteUser, self).dispatch(self.request, *args, **kwargs)
 
     def get_success_url(self):
         messages.success(self.request, _("User successfully deleted"))
@@ -158,13 +159,83 @@ class UpdateStatus(LoginRequiredMixin, UpdateView):
 
 class DeleteStatus(LoginRequiredMixin, DeleteView):
     model = TaskStatus
-    template_name = 'tasks/delete_status.html'
+    template_name = 'tasks/confirm_delete.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = _('Delete status')
+        context['confirmation'] = _('Are you sure that you want to delete the status?')
         return context
 
     def get_success_url(self):
         messages.success(self.request, _('Status successfully deleted'))
         return reverse_lazy('status_list')
+
+
+class TaskList(LoginRequiredMixin, ListView):
+    model = Task
+    template_name = 'tasks/task_list.html'
+    context_object_name = 'tasks'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TaskList, self).get_context_data(**kwargs)
+        context['title'] = _('Tasks')
+        return context
+
+
+class CreateTask(LoginRequiredMixin, CreateView):
+    form_class = CreateTaskForm
+    template_name = 'tasks/create_task.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CreateTask, self).get_context_data(**kwargs)
+        context['title'] = _('Create task')
+        context['button_text'] = _('Create')
+        return context
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        messages.success(self.request, _('Task successfully created'))
+        return reverse_lazy('task_list')
+
+
+class UpdateTask(LoginRequiredMixin, UpdateView):
+    form_class = CreateTaskForm
+    template_name = 'tasks/create_task.html'
+    model = Task
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdateTask, self).get_context_data(**kwargs)
+        context['title'] = _('Update task')
+        context['button_text'] = _('Update')
+        return context
+
+    def get_success_url(self):
+        messages.success(self.request, _('Task successfully updated'))
+        return reverse_lazy('task_list')
+
+
+class DeleteTask(LoginRequiredMixin, DeleteView):
+    model = Task
+    template_name = 'tasks/confirm_delete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DeleteTask, self).get_context_data(**kwargs)
+        context['title'] = _('Delete task')
+        context['confirmation'] = _('Are you sure that you want to delete the task?')
+        return context
+
+    def dispatch(self, request, *args, **kwargs):
+        task = self.model.objects.select_related('author').get(pk=kwargs['pk'])
+        if task.author.pk != self.request.user.pk:
+            messages.error(self.request,
+                           _('Only the author can delete tasks'))
+            return redirect('task_list')
+        return super(DeleteTask, self).dispatch(self.request, *args, **kwargs)
+
+    def get_success_url(self):
+        messages.success(self.request, _("Task successfully deleted"))
+        return reverse_lazy('task_list')

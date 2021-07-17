@@ -1,8 +1,6 @@
 from django.urls import path
 
-from .views import Home, RegisterUser, LoginUser, \
-    logout_user, UserList, UpdateUser, DeleteUser, StatusList, CreateStatus, \
-    UpdateStatus, DeleteStatus
+from .views import *
 
 
 urlpatterns = [
@@ -21,4 +19,8 @@ urlpatterns = [
          name='update_status'),
     path('statuses/<int:pk>/delete', DeleteStatus.as_view(),
          name='delete_status'),
+    path('tasks/', TaskList.as_view(), name='task_list'),
+    path('tasks/create/', CreateTask.as_view(), name='create_task'),
+    path('tasks/<int:pk>/update/', UpdateTask.as_view(), name='update_task'),
+    path('tasks/<int:pk>/delete/', DeleteTask.as_view(), name='delete_task'),
 ]

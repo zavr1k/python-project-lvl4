@@ -6,7 +6,7 @@
     <h1 class="my-4">{{ title }}</h1>
    <form method="post">
     {% csrf_token %}
-    <p class="">{% translate "Are you sure that you want to delete the status?" %}</p>
+    <p class="">{{ confirmation }}</p>
     <button class="btn btn-outline-danger" type="submit">{% translate "Yes, I want" %}</button>
     </form>
 </div>
