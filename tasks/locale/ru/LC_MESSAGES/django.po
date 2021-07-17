@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-17 11:34+0300\n"
+"POT-Creation-Date: 2021-07-17 16:06+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,17 +24,29 @@ msgstr ""
 msgid "Name"
 msgstr "Имя"
 
+#: tasks/forms.py:32 tasks/templates/tasks/task_list.html:13
+msgid "Title"
+msgstr "Название"
+
+#: tasks/forms.py:33
+msgid "Description"
+msgstr "Описание"
+
+#: tasks/forms.py:34 tasks/templates/tasks/task_list.html:16
+msgid "Executor"
+msgstr "Исполнитель"
+
+#: tasks/forms.py:35 tasks/templates/tasks/task_list.html:14
+msgid "Status"
+msgstr "Статус"
+
 #: tasks/models.py:17
-#, fuzzy
-#| msgid "create status"
 msgid "Task status"
-msgstr "Создать статус"
+msgstr "Статус задачи"
 
 #: tasks/models.py:18
-#, fuzzy
-#| msgid "Statuses"
 msgid "Task statuses"
-msgstr "Статусы"
+msgstr "Статусы задач"
 
 #: tasks/models.py:34
 msgid "Task"
@@ -95,46 +107,26 @@ msgid "Delete"
 msgstr "Удалить"
 
 #: tasks/templates/tasks/task_list.html:8
-#, fuzzy
-#| msgid "create status"
 msgid "create task"
-msgstr "Создать статус"
-
-#: tasks/templates/tasks/task_list.html:13
-msgid "Title"
-msgstr "Название"
-
-#: tasks/templates/tasks/task_list.html:14
-#, fuzzy
-#| msgid "Statuses"
-msgid "Status"
-msgstr "Статусы"
+msgstr "Создать задачу"
 
 #: tasks/templates/tasks/task_list.html:15
 msgid "Author"
 msgstr "Автор"
-
-#: tasks/templates/tasks/task_list.html:16
-msgid "Executor"
-msgstr "Исполнитель"
 
 #: tasks/templates/tasks/user_list.html:12
 msgid "Username"
 msgstr "Имя пользователя"
 
 #: tasks/templates/tasks/user_list.html:13
-#, fuzzy
 msgid "Full name"
 msgstr "Полное имя"
 
 #: tasks/templates/tasks/user_list.html:14
-#, fuzzy
 msgid "Date of registration"
 msgstr "Дата рeгистрации"
 
 #: tasks/views.py:56
-#, fuzzy
-#| msgid "Username"
 msgid "User change"
 msgstr "Изменение пользователя"
 
@@ -147,8 +139,6 @@ msgid "You are not allowed change other users"
 msgstr "Вам нельзя изменять других пользователей"
 
 #: tasks/views.py:70
-#, fuzzy
-#| msgid "Username"
 msgid "User changed successfully"
 msgstr "Пользователь успешно изменен"
 
@@ -157,8 +147,6 @@ msgid "Delete user"
 msgstr "Удалить пользователя"
 
 #: tasks/views.py:81
-#, fuzzy
-#| msgid "Are you sure thar you want to delete user?"
 msgid "Are you sure that you want to delete the user?"
 msgstr "Вы уверены что хотите удалить пользователя?"
 
@@ -191,8 +179,6 @@ msgid "Status successfully created"
 msgstr "Статус успешно создан"
 
 #: tasks/views.py:151
-#, fuzzy
-#| msgid "Change"
 msgid "Change status"
 msgstr "Изменить статус"
 
@@ -207,7 +193,6 @@ msgstr "Удалить статус"
 
 #: tasks/views.py:167
 #, fuzzy
-#| msgid "Are you sure thar you want to delete user?"
 msgid "Are you sure that you want to delete the status?"
 msgstr "Вы уверены что хотите удалить статус?"
 
@@ -216,37 +201,26 @@ msgid "Status successfully deleted"
 msgstr "Статус успешно удален"
 
 #: tasks/views.py:192
-#, fuzzy
-#| msgid "Create status"
 msgid "Create task"
-msgstr "Создание статуса"
+msgstr "Создание задачи"
 
 #: tasks/views.py:201
-#, fuzzy
-#| msgid "Status successfully created"
 msgid "Task successfully created"
-msgstr "Статус успешно создан"
+msgstr "Задача успешно создан"
 
 #: tasks/views.py:212
-#, fuzzy
-#| msgid "Update"
 msgid "Update task"
-msgstr "Обновить"
+msgstr "Обновление задачи"
 
 #: tasks/views.py:217
-#, fuzzy
-#| msgid "Status successfully updated"
 msgid "Task successfully updated"
-msgstr "Статус успешно обновлен"
+msgstr "Задача успешно обновлена"
 
 #: tasks/views.py:227
-#, fuzzy
 msgid "Delete task"
 msgstr "Удалить задачу"
 
 #: tasks/views.py:228
-#, fuzzy
-#| msgid "Are you sure thar you want to delete user?"
 msgid "Are you sure that you want to delete the task?"
 msgstr "Вы уверены что хотите удалить задачу?"
 
@@ -255,29 +229,6 @@ msgid "Only the author can delete tasks"
 msgstr "Только автор может удалять задачи"
 
 #: tasks/views.py:240
-#, fuzzy
-#| msgid "Status successfully deleted"
 msgid "Task successfully deleted"
-msgstr "Статус успешно удален"
+msgstr "Задача успешно удалена"
 
-#~ msgid "First name"
-#~ msgstr "Имя"
-
-#~ msgid "Second name"
-#~ msgstr "Фамилия"
-
-#~ msgid "Password"
-#~ msgstr "Пароль"
-
-#~ msgid "Password must contain at least 8 characters"
-#~ msgstr "Пароль должен содержать минимум 8 символов"
-
-#~ msgid "To confirm, please enter the password again"
-#~ msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
-
-#~ msgid "Password confirmation"
-#~ msgstr "Подтверждение пароля"
-
-#, fuzzy
-#~ msgid "username"
-#~ msgstr "Имя пользователя"
