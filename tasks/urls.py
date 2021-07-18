@@ -1,6 +1,8 @@
 from django.urls import path
 
-from .views import *
+from .views import Home, LoginUser, logout_user, UserList, RegisterUser, \
+    UpdateUser, DeleteUser, StatusList, CreateStatus, UpdateStatus, \
+    DeleteStatus, TaskList, CreateTask, UpdateTask, DeleteTask
 
 
 urlpatterns = [

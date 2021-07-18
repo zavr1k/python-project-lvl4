@@ -78,7 +78,8 @@ class DeleteUser(LoginRequiredMixin, DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = _('Delete user')
-        context['confirmation'] = _('Are you sure that you want to delete the user?')
+        context['confirmation'] = \
+            _('Are you sure that you want to delete the user?')
         return context
 
     def dispatch(self, request, *args, **kwargs):
@@ -164,7 +165,8 @@ class DeleteStatus(LoginRequiredMixin, DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = _('Delete status')
-        context['confirmation'] = _('Are you sure that you want to delete the status?')
+        context['confirmation'] = \
+            _('Are you sure that you want to delete the status?')
         return context
 
     def get_success_url(self):
@@ -225,7 +227,8 @@ class DeleteTask(LoginRequiredMixin, DeleteView):
     def get_context_data(self, **kwargs):
         context = super(DeleteTask, self).get_context_data(**kwargs)
         context['title'] = _('Delete task')
-        context['confirmation'] = _('Are you sure that you want to delete the task?')
+        context['confirmation'] = \
+            _('Are you sure that you want to delete the task?')
         return context
 
     def dispatch(self, request, *args, **kwargs):

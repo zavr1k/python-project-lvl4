@@ -1,5 +1,4 @@
 from django.contrib.auth import get_user_model
-from django.db.models import RestrictedError
 from django.test import TestCase, Client
 from django.urls import reverse_lazy
 
@@ -117,7 +116,8 @@ class TestTask(TestCase):
                 'status': self.status.pk,
             }
         )
-        task = Task.objects.select_related('author', 'executor').get(title='Created task')
+        task = Task.objects.select_related('author', 'executor').\
+            get(title='Created task')
 
         self.assertRedirects(self.response, reverse_lazy('task_list'))
         self.assertTrue(task)
