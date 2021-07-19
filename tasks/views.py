@@ -10,8 +10,9 @@ from django.views import View
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib import messages
 
-from tasks.forms import RegisterUserForm, CreateStatusForm, CreateTaskForm
-from tasks.models import TaskStatus, Task
+from tasks.forms import RegisterUserForm, CreateStatusForm, \
+    CreateTaskForm, CreateLabelForm
+from tasks.models import Status, Task, Label
 
 
 class Home(View):
@@ -117,7 +118,7 @@ def logout_user(request):
 
 
 class StatusList(LoginRequiredMixin, ListView):
-    model = TaskStatus
+    model = Status
     template_name = 'tasks/status_list.html'
     context_object_name = 'statuses'
 
@@ -129,7 +130,7 @@ class StatusList(LoginRequiredMixin, ListView):
 
 class CreateStatus(CreateView):
     form_class = CreateStatusForm
-    template_name = 'tasks/create_status.html'
+    template_name = 'tasks/create_form.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -144,8 +145,8 @@ class CreateStatus(CreateView):
 
 class UpdateStatus(LoginRequiredMixin, UpdateView):
     form_class = CreateStatusForm
-    template_name = 'tasks/create_status.html'
-    model = TaskStatus
+    template_name = 'tasks/create_form.html'
+    model = Status
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -159,7 +160,7 @@ class UpdateStatus(LoginRequiredMixin, UpdateView):
 
 
 class DeleteStatus(LoginRequiredMixin, DeleteView):
-    model = TaskStatus
+    model = Status
     template_name = 'tasks/confirm_delete.html'
 
     def get_context_data(self, **kwargs):
@@ -187,7 +188,7 @@ class TaskList(LoginRequiredMixin, ListView):
 
 class CreateTask(LoginRequiredMixin, CreateView):
     form_class = CreateTaskForm
-    template_name = 'tasks/create_task.html'
+    template_name = 'tasks/create_form.html'
 
     def get_context_data(self, **kwargs):
         context = super(CreateTask, self).get_context_data(**kwargs)
@@ -206,7 +207,7 @@ class CreateTask(LoginRequiredMixin, CreateView):
 
 class UpdateTask(LoginRequiredMixin, UpdateView):
     form_class = CreateTaskForm
-    template_name = 'tasks/create_task.html'
+    template_name = 'tasks/create_form.html'
     model = Task
 
     def get_context_data(self, **kwargs):
@@ -242,3 +243,71 @@ class DeleteTask(LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         messages.success(self.request, _("Task successfully deleted"))
         return reverse_lazy('task_list')
+
+
+class LabelList(LoginRequiredMixin, ListView):
+    template_name = 'tasks/label_list.html'
+    model = Label
+    context_object_name = 'labels'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(LabelList, self).get_context_data(**kwargs)
+        context['title'] = _('Labels')
+        return context
+
+
+class CreateLabel(LoginRequiredMixin, CreateView):
+    form_class = CreateLabelForm
+    template_name = 'tasks/create_form.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CreateLabel, self).get_context_data(**kwargs)
+        context['title'] = _('Create label')
+        context['button_text'] = _('Create')
+        return context
+
+    def get_success_url(self):
+        messages.success(self.request, _('Label created'))
+        return reverse_lazy('label_list')
+
+
+class UpdateLabel(LoginRequiredMixin, UpdateView):
+    form_class = CreateLabelForm
+    template_name = 'tasks/create_form.html'
+    model = Label
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdateLabel, self).get_context_data(**kwargs)
+        context['title'] = _('Update label')
+        context['button_text'] = _('Update')
+        return context
+
+    def get_success_url(self):
+        messages.success(self.request, _('Label was updated'))
+        return reverse_lazy('label_list')
+
+
+class DeleteLabel(LoginRequiredMixin, DeleteView):
+    model = Label
+    template_name = 'tasks/confirm_delete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DeleteLabel, self).get_context_data(**kwargs)
+        context['title'] = _('Delete label')
+        context['confirmation'] = \
+            _('Are you sure that you want to delete the label?')
+        return context
+
+    def get_success_url(self):
+        messages.success(self.request, _('Label successfully deleted'))
+        return reverse_lazy('label_list')
+
+    def dispatch(self, request, *args, **kwargs):
+        labeled_tasks = Label.objects.get(pk=kwargs['pk']).tasks.all()
+        if labeled_tasks:
+            messages.error(
+                self.request,
+                _('Cannot remove a label because it is in use')
+            )
+            return redirect('label_list')
+        return super(DeleteLabel, self).dispatch(self.request, *args, **kwargs)
