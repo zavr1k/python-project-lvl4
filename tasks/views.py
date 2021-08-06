@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -8,8 +9,9 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
-from django.contrib import messages
+from django_filters.views import FilterView
 
+from tasks.filters import TaskFilter
 from tasks.forms import RegisterUserForm, CreateStatusForm, \
     CreateTaskForm, CreateLabelForm
 from tasks.models import Status, Task, Label
@@ -175,10 +177,11 @@ class DeleteStatus(LoginRequiredMixin, DeleteView):
         return reverse_lazy('status_list')
 
 
-class TaskList(LoginRequiredMixin, ListView):
+class TaskList(LoginRequiredMixin, FilterView, ListView):
     model = Task
     template_name = 'tasks/task_list.html'
     context_object_name = 'tasks'
+    filterset_class = TaskFilter
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskList, self).get_context_data(**kwargs)

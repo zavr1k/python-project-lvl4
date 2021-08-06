@@ -9,6 +9,7 @@ class Status(models.Model):
         unique=True,
     )
     time_create = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
 
     def __str__(self):
         return self.name
@@ -30,6 +31,7 @@ class Task(models.Model):
                                  related_name='executor',
                                  on_delete=models.RESTRICT)
     time_create = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
 
     class Meta:
         verbose_name = _('Task')
@@ -42,6 +44,7 @@ class Task(models.Model):
 class Label(models.Model):
     name = models.CharField(max_length=255, unique=True)
     time_create = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
 
     def __str__(self):
         return self.name

@@ -1,0 +1,27 @@
+{% load i18n %}
+<form class="form-inline" method="get">
+  <label class="my-1 mr-2" for="id_status">{% translate 'Status' %}</label>
+  <select class="custom-select my-1 mr-sm-2" name="status" id="id_status">
+      {% for status in filter.form.status %}
+        {{ status }}
+      {% endfor %}
+  </select>
+  <label class="my-1 mr-2" for="id_executor">{% translate 'Executor' %}</label>
+  <select class="custom-select my-1 mr-sm-2" name="executor" id="id_executor">
+      {% for executor in filter.form.executor %}
+        {{ executor }}
+      {% endfor %}
+  </select>
+    <label class="my-1 mr-2" for="id_labels">{% translate 'Label' %}</label>
+  <select class="custom-select my-1 mr-sm-2" name="labels" id="id_labels">
+      {% for label in filter.form.labels %}
+        {{ label }}
+      {% endfor %}
+  </select>
+  <div class="custom-control custom-checkbox my-1 mr-sm-2">
+    <input type="checkbox" class="custom-control-input" name="self_tasks" id="id_self_tasks">
+    <label class="custom-control-label" for="id_self_tasks">{% translate 'Self tasks' %}</label>
+  </div>
+
+  <button class="btn btn-outline-primary" type="submit">{% translate 'Filter' %}</button>
+</form>
