@@ -3,6 +3,7 @@ from django.test import TestCase, Client
 from django.urls import reverse_lazy
 
 from tasks.models import Status, Task, Label
+from tasks.filters import TaskFilter
 
 User = get_user_model()
 
@@ -151,6 +152,16 @@ class TestTask(TestCase):
         self.assertFalse(Task.objects.filter(name='For deleted'))
         self.client.post(reverse_lazy('delete_task', kwargs={'pk': 5}))
         self.assertTrue(Task.objects.filter(pk=5))
+
+    def test_filter_task(self):
+        qs = Task.objects.all()
+        f = TaskFilter(
+            data={'executor': 12},
+            queryset=qs
+        )
+        filtered_tasks = f.qs.order_by('id')
+        expected_tasks = Task.objects.filter(executor=12).order_by('id')
+        self.assertQuerysetEqual(filtered_tasks, expected_tasks)
 
 
 class TestLabel(TestCase):
