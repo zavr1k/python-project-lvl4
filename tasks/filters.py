@@ -4,9 +4,12 @@ from tasks.models import Label, Task
 
 
 class TaskFilter(django_filters.FilterSet):
-    LABELS = list((label.pk, label.name) for label in Label.objects.all())
 
-    labels = django_filters.ChoiceFilter(field_name='labels', choices=LABELS)
+    @staticmethod
+    def get_labels(self):
+        return list((label.pk, label.name) for label in Label.objects.all(self))
+
+    labels = django_filters.ChoiceFilter(field_name='labels', choices=get_labels)
     self_tasks = django_filters.BooleanFilter(field_name='author',
                                               widget=forms.CheckboxInput,
                                               method='get_self_tasks')
