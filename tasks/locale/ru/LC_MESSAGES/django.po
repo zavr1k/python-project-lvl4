@@ -100,7 +100,11 @@ msgstr "Удалить"
 
 #: tasks/templates/tasks/login.html:11 tasks/templates/tasks/nav.html:35
 msgid "Login"
+<<<<<<< HEAD
 msgstr "Вход"
+=======
+msgstr "Воход"
+>>>>>>> 86c38529d683e6658ac050c7e044cba8da05646b
 
 #: tasks/templates/tasks/nav.html:3 tasks/views.py:24
 msgid "Task manager"
