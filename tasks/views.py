@@ -45,7 +45,7 @@ class RegisterUser(CreateView):
     def get_context_data(self, **kwargs):
         context = super(RegisterUser, self).get_context_data(**kwargs)
         context['title'] = _('Регистрация')
-        context['button_text'] = _('Зарегистрироваться')
+        context['button_text'] = _('Зарегистрировать')
         return context
 
 
