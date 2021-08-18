@@ -19,7 +19,7 @@ class CreateStatusForm(ModelForm):
         model = Status
         fields = ('name',)
         labels = {
-            'name': _('Name')
+            'name': _('Имя')
         }
 
 
@@ -29,11 +29,11 @@ class CreateTaskForm(ModelForm):
         model = Task
         fields = ('name', 'description', 'status', 'executor', 'labels')
         labels = {
-            'name': _('Name'),
-            'description': _('Description'),
-            'executor': _('Executor'),
-            'status': _('Status'),
-            'labels': _('Labels')
+            'name': _('Имя'),
+            'description': _('Описание'),
+            'executor': _('Исполнитель'),
+            'status': _('Статус'),
+            'labels': _('Метки')
         }
 
 
@@ -42,4 +42,4 @@ class CreateLabelForm(ModelForm):
     class Meta:
         model = Label
         fields = ('name',)
-        labels = {'name': _('Name')}
+        labels = {'name': _('Имя')}

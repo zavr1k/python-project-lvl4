@@ -9,9 +9,9 @@
         <thead class="table-dark">
         <tr>
             <th>ID</th>
-            <th>{% translate 'Username' %}</th>
-            <th>{% translate 'Full name' %}</th>
-            <th>{% translate 'Date of registration' %}</th>
+            <th>{% translate 'Имя пользователя' %}</th>
+            <th>{% translate 'Полное имя' %}</th>
+            <th>{% translate 'Дата создания' %}</th>
             <th></th>
         </tr>
         </thead>
@@ -23,9 +23,9 @@
             <td>{{ user.get_full_name }}</td>
             <td>{{ user.date_joined|date:"d-m-Y" }}</td>
             <td>
-                <a href="{% url 'change_user' user.pk %}">{% translate 'Change' %}</a>
+                <a href="{% url 'change_user' user.pk %}">{% translate 'Изменить' %}</a>
                 <br>
-                <a href="{% url 'delete_user' user.pk %}">{% translate 'Delete' %}</a>
+                <a href="{% url 'delete_user' user.pk %}">{% translate 'Удалить' %}</a>
             </td>
         </tr>
         {% endfor %}

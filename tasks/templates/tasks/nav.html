@@ -1,6 +1,6 @@
 {% load i18n %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="{% url 'main' %}">{% translate "Task manager" %}</a>
+  <a class="navbar-brand" href="{% url 'main' %}">{% translate "Менеджер задач" %}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -8,17 +8,17 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'user_list' %}">{% translate "Users" %}</a>
+        <a class="nav-link" href="{% url 'user_list' %}">{% translate "Пользователи" %}</a>
       </li>
       {% if user.is_authenticated %}
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'status_list' %}">{% translate "Statuses" %}</a>
+        <a class="nav-link" href="{% url 'status_list' %}">{% translate "Статусы" %}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'label_list' %}">{% translate "Labels" %}</a>
+        <a class="nav-link" href="{% url 'label_list' %}">{% translate "Метки" %}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'task_list' %}">{% translate "Tasks" %}</a>
+        <a class="nav-link" href="{% url 'task_list' %}">{% translate "Задачи" %}</a>
       </li>
       {% endif %}
     </ul>
@@ -28,14 +28,14 @@
       </li>
       {% if user.is_authenticated %}
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'logout' %}">{% translate "Logout" %}</a>
+        <a class="nav-link" href="{% url 'logout' %}">{% translate "Выход" %}</a>
       </li>
       {% else %}
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'login' %}">Вход</a>
+        <a class="nav-link" href="{% url 'login' %}">{% translate "Вход" %}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'register' %}">{% translate "Register" %}</a>
+        <a class="nav-link" href="{% url 'register' %}">{% translate "Регистрация" %}</a>
       </li>
       {% endif %}
     </ul>

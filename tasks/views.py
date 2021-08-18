@@ -21,7 +21,7 @@ class Home(View):
 
     def get(self, request):
         content = {
-            'title': _('Task manager')
+            'title': _('Менеджер задач')
         }
         return render(request, 'tasks/main.html', content)
 
@@ -33,7 +33,7 @@ class UserList(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = _('Users')
+        context['title'] = _('Пользователи')
         return context
 
 
@@ -44,8 +44,8 @@ class RegisterUser(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(RegisterUser, self).get_context_data(**kwargs)
-        context['title'] = _('Register')
-        context['button_text'] = _('Register')
+        context['title'] = _('Регистрация')
+        context['button_text'] = _('Зарегистрироваться')
         return context
 
 
@@ -56,21 +56,21 @@ class UpdateUser(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = _('User change')
-        context['button_text'] = _('Update')
+        context['title'] = _('Изменение пользователя')
+        context['button_text'] = _('Изменить')
         return context
 
     def dispatch(self, request, *args, **kwargs):
         if kwargs['pk'] != self.request.user.pk:
             messages.error(
                 self.request,
-                _("You are not allowed change other users"),
+                _("У вас нет прав для изменения другого пользователя"),
             )
             return redirect('user_list')
         return super(UpdateUser, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
-        messages.success(self.request, _('User changed successfully'))
+        messages.success(self.request, _('Пользователь успешно изменен'))
         return reverse_lazy('user_list')
 
 
@@ -80,22 +80,22 @@ class DeleteUser(LoginRequiredMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = _('Delete user')
+        context['title'] = _('Удаление пользователя')
         context['confirmation'] = \
-            _('Are you sure that you want to delete the user?')
+            _('Вы уверены что хотите удалить пользователя?')
         return context
 
     def dispatch(self, request, *args, **kwargs):
         if kwargs['pk'] != self.request.user.pk:
             messages.error(
                 self.request,
-                _("You are not allowed change other users"),
+                _("У вас нет прав для изменения другого пользователя"),
             )
             return redirect('user_list')
         return super(DeleteUser, self).dispatch(self.request, *args, **kwargs)
 
     def get_success_url(self):
-        messages.success(self.request, _("User successfully deleted"))
+        messages.success(self.request, _("Пользователь успешно удален"))
         return reverse_lazy('user_list')
 
 
@@ -105,17 +105,17 @@ class LoginUser(LoginView):
 
     def get_context_data(self, **kwargs):
         context = super(LoginUser, self).get_context_data(**kwargs)
-        context['title'] = _('Authentication')
+        context['title'] = _('Вход')
         return context
 
     def get_success_url(self):
-        messages.success(self.request, _('You are logged in'))
+        messages.success(self.request, _('Вы залогинены'))
         return reverse_lazy('main')
 
 
 def logout_user(request):
     logout(request)
-    messages.info(request, _('You are successfully logged out'))
+    messages.info(request, _('Вы разлогинены'))
     return redirect('main')
 
 
@@ -126,7 +126,7 @@ class StatusList(LoginRequiredMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = _('Statuses')
+        context['title'] = _('Статусы')
         return context
 
 
@@ -136,12 +136,12 @@ class CreateStatus(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = _('Create status')
-        context['button_text'] = _('Create')
+        context['title'] = _('Создать статус')
+        context['button_text'] = _('Создать')
         return context
 
     def get_success_url(self):
-        messages.success(self.request, _('Status successfully created'))
+        messages.success(self.request, _('Статус успешно создан'))
         return reverse_lazy('status_list')
 
 
@@ -152,12 +152,12 @@ class UpdateStatus(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = _('Change status')
-        context['button_text'] = _('Update')
+        context['title'] = _('Изменение статуса')
+        context['button_text'] = _('Изменить')
         return context
 
     def get_success_url(self):
-        messages.success(self.request, _('Status successfully updated'))
+        messages.success(self.request, _('Статус успешно изменен'))
         return reverse_lazy('status_list')
 
 
@@ -167,13 +167,13 @@ class DeleteStatus(LoginRequiredMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = _('Delete status')
+        context['title'] = _('Удаление статуса')
         context['confirmation'] = \
-            _('Are you sure that you want to delete the status?')
+            _('Вы уверены что хотите удалить статус?')
         return context
 
     def get_success_url(self):
-        messages.success(self.request, _('Status successfully deleted'))
+        messages.success(self.request, _('Статус успешно удален'))
         return reverse_lazy('status_list')
 
 
@@ -185,7 +185,7 @@ class TaskList(LoginRequiredMixin, FilterView, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskList, self).get_context_data(**kwargs)
-        context['title'] = _('Tasks')
+        context['title'] = _('Задачи')
         return context
 
 
@@ -195,8 +195,8 @@ class CreateTask(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(CreateTask, self).get_context_data(**kwargs)
-        context['title'] = _('Create task')
-        context['button_text'] = _('Create')
+        context['title'] = _('Создать задачу')
+        context['button_text'] = _('Создать')
         return context
 
     def form_valid(self, form):
@@ -204,7 +204,7 @@ class CreateTask(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        messages.success(self.request, _('Task successfully created'))
+        messages.success(self.request, _('Задача успешно создана'))
         return reverse_lazy('task_list')
 
 
@@ -215,12 +215,12 @@ class UpdateTask(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(UpdateTask, self).get_context_data(**kwargs)
-        context['title'] = _('Update task')
-        context['button_text'] = _('Update')
+        context['title'] = _('Изменение задачи')
+        context['button_text'] = _('Изменить')
         return context
 
     def get_success_url(self):
-        messages.success(self.request, _('Task successfully updated'))
+        messages.success(self.request, _('Задача успешно изменена'))
         return reverse_lazy('task_list')
 
 
@@ -230,21 +230,21 @@ class DeleteTask(LoginRequiredMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super(DeleteTask, self).get_context_data(**kwargs)
-        context['title'] = _('Delete task')
+        context['title'] = _('Удаление задачи')
         context['confirmation'] = \
-            _('Are you sure that you want to delete the task?')
+            _('Вы уверены что хотите удалить задачу?')
         return context
 
     def dispatch(self, request, *args, **kwargs):
         task = self.model.objects.select_related('author').get(pk=kwargs['pk'])
         if task.author.pk != self.request.user.pk:
             messages.error(self.request,
-                           _('Only the author can delete tasks'))
+                           _('Задачу может удалить только ее автор'))
             return redirect('task_list')
         return super(DeleteTask, self).dispatch(self.request, *args, **kwargs)
 
     def get_success_url(self):
-        messages.success(self.request, _("Task successfully deleted"))
+        messages.success(self.request, _("Задача успешно удалена"))
         return reverse_lazy('task_list')
 
 
@@ -255,7 +255,7 @@ class LabelList(LoginRequiredMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(LabelList, self).get_context_data(**kwargs)
-        context['title'] = _('Labels')
+        context['title'] = _('Метки')
         return context
 
 
@@ -265,12 +265,12 @@ class CreateLabel(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(CreateLabel, self).get_context_data(**kwargs)
-        context['title'] = _('Create label')
-        context['button_text'] = _('Create')
+        context['title'] = _('Создать метку')
+        context['button_text'] = _('Создать')
         return context
 
     def get_success_url(self):
-        messages.success(self.request, _('Label created'))
+        messages.success(self.request, _('Метка создана'))
         return reverse_lazy('label_list')
 
 
@@ -281,12 +281,12 @@ class UpdateLabel(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(UpdateLabel, self).get_context_data(**kwargs)
-        context['title'] = _('Update label')
-        context['button_text'] = _('Update')
+        context['title'] = _('Изменение метки')
+        context['button_text'] = _('Изменить')
         return context
 
     def get_success_url(self):
-        messages.success(self.request, _('Label was updated'))
+        messages.success(self.request, _('Метка изменена'))
         return reverse_lazy('label_list')
 
 
@@ -296,13 +296,13 @@ class DeleteLabel(LoginRequiredMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super(DeleteLabel, self).get_context_data(**kwargs)
-        context['title'] = _('Delete label')
+        context['title'] = _('Удаление метки')
         context['confirmation'] = \
-            _('Are you sure that you want to delete the label?')
+            _('Вы уверены что хотите удалить метку?')
         return context
 
     def get_success_url(self):
-        messages.success(self.request, _('Label successfully deleted'))
+        messages.success(self.request, _('Метка удалена'))
         return reverse_lazy('label_list')
 
     def dispatch(self, request, *args, **kwargs):
@@ -310,7 +310,7 @@ class DeleteLabel(LoginRequiredMixin, DeleteView):
         if labeled_tasks:
             messages.error(
                 self.request,
-                _('Cannot remove a label because it is in use')
+                _('Невозможно удалить метку, потому что она используется')
             )
             return redirect('label_list')
         return super(DeleteLabel, self).dispatch(self.request, *args, **kwargs)

@@ -15,8 +15,8 @@ class Status(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = _('Status')
-        verbose_name_plural = _('Statuses')
+        verbose_name = _('Статус')
+        verbose_name_plural = _('Статусы')
 
 
 class Task(models.Model):
@@ -34,8 +34,8 @@ class Task(models.Model):
     objects = models.Manager()
 
     class Meta:
-        verbose_name = _('Task')
-        verbose_name_plural = _('Tasks')
+        verbose_name = _('Задача')
+        verbose_name_plural = _('Задачи')
 
     def __str__(self):
         return self.name
@@ -50,5 +50,5 @@ class Label(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = _('Label')
-        verbose_name_plural = _('Labels')
+        verbose_name = _('Метка')
+        verbose_name_plural = _('Метки')
