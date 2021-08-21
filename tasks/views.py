@@ -101,7 +101,7 @@ class DeleteUser(LoginRequiredMixin, DeleteView):
         return super(DeleteUser, self).dispatch(self.request, *args, **kwargs)
 
     def get_success_url(self):
-        messages.success(self.request, _("Пользователь успешно удален"))
+        messages.success(self.request, _("Пользователь успешно удалён"))
         return reverse_lazy('user_list')
 
 
@@ -163,7 +163,7 @@ class UpdateStatus(LoginRequiredMixin, UpdateView):
         return context
 
     def get_success_url(self):
-        messages.success(self.request, _('Статус успешно изменен'))
+        messages.success(self.request, _('Статус успешно изменён'))
         return reverse_lazy('status_list')
 
 
@@ -179,7 +179,7 @@ class DeleteStatus(LoginRequiredMixin, DeleteView):
         return context
 
     def get_success_url(self):
-        messages.success(self.request, _('Статус успешно удален'))
+        messages.success(self.request, _('Статус успешно удалён'))
         return reverse_lazy('status_list')
 
 
@@ -245,7 +245,7 @@ class DeleteTask(LoginRequiredMixin, DeleteView):
         task = self.model.objects.select_related('author').get(pk=kwargs['pk'])
         if task.author.pk != self.request.user.pk:
             messages.error(self.request,
-                           _('Задачу может удалить только ее автор'))
+                           _('Задачу может удалить только её автор'))
             return redirect('task_list')
         return super(DeleteTask, self).dispatch(self.request, *args, **kwargs)
 
