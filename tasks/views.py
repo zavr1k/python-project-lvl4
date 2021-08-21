@@ -40,13 +40,19 @@ class UserList(ListView):
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
     template_name = 'tasks/register.html'
-    success_url = reverse_lazy('login')
 
     def get_context_data(self, **kwargs):
         context = super(RegisterUser, self).get_context_data(**kwargs)
         context['title'] = _('Регистрация')
         context['button_text'] = _('Зарегистрировать')
         return context
+
+    def get_success_url(self):
+        messages.success(
+         self.request,
+         _('Пользователь успешно зарегистрирован')
+        )
+        return reverse_lazy('login')
 
 
 class UpdateUser(LoginRequiredMixin, UpdateView):
