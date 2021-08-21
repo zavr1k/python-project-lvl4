@@ -76,7 +76,7 @@ class UpdateUser(LoginRequiredMixin, UpdateView):
         return super(UpdateUser, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
-        messages.success(self.request, _('Пользователь успешно изменен'))
+        messages.success(self.request, _('Пользователь успешно изменён'))
         return reverse_lazy('user_list')
 
 
