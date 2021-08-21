@@ -276,7 +276,7 @@ class CreateLabel(LoginRequiredMixin, CreateView):
         return context
 
     def get_success_url(self):
-        messages.success(self.request, _('Метка создана'))
+        messages.success(self.request, _('Метка успешно создана'))
         return reverse_lazy('label_list')
 
 
