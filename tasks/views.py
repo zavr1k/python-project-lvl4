@@ -292,7 +292,7 @@ class UpdateLabel(LoginRequiredMixin, UpdateView):
         return context
 
     def get_success_url(self):
-        messages.success(self.request, _('Метка изменена'))
+        messages.success(self.request, _('Метка успешно изменена'))
         return reverse_lazy('label_list')
 
 
