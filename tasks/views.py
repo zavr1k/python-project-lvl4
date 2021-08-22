@@ -308,7 +308,7 @@ class DeleteLabel(LoginRequiredMixin, DeleteView):
         return context
 
     def get_success_url(self):
-        messages.success(self.request, _('Метка удалена'))
+        messages.success(self.request, _('Метка успешно удалена'))
         return reverse_lazy('label_list')
 
     def dispatch(self, request, *args, **kwargs):
