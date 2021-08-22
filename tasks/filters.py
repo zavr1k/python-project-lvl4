@@ -1,27 +1,17 @@
 import django_filters
 from django import forms
-from tasks.models import Label, Task
+from tasks.models import Task
 
 
 class TaskFilter(django_filters.FilterSet):
 
-    @staticmethod
-    def get_labels(self):
-        labels = ((label.pk, label.name) for label in Label.objects.all(self))
-        return list(labels)
-
-    labels = django_filters.ChoiceFilter(field_name='labels',
-                                         choices=get_labels)
     self_tasks = django_filters.BooleanFilter(field_name='author',
                                               widget=forms.CheckboxInput,
                                               method='get_self_tasks')
 
     class Meta:
         model = Task
-        fields = {
-            'status': ['exact'],
-            'executor': ['exact'],
-        }
+        fields = ['status', 'executor', 'labels']
 
     def get_self_tasks(self, queryset, name, value):
         if value:
