@@ -58,7 +58,7 @@ class TaskList(LoginRequiredMixin, FilterView, ListView):
 
 class CreateTask(LoginRequiredMixin, CreateView):
     form_class = CreateTaskForm
-    template_name = 'tasks/confirm_delete.html'
+    template_name = 'tasks/create_form.html'
 
     def get_context_data(self, **kwargs):
         context = super(CreateTask, self).get_context_data(**kwargs)
