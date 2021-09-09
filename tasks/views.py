@@ -77,7 +77,7 @@ class CreateTask(LoginRequiredMixin, CreateView):
 
 class UpdateTask(LoginRequiredMixin, UpdateView):
     form_class = CreateTaskForm
-    template_name = 'tasks/confirm_delete.html'
+    template_name = 'tasks/create_form.html'
     model = Task
 
     def get_context_data(self, **kwargs):
@@ -128,7 +128,7 @@ class LabelList(LoginRequiredMixin, ListView):
 
 class CreateLabel(LoginRequiredMixin, CreateView):
     form_class = CreateLabelForm
-    template_name = 'tasks/confirm_delete.html'
+    template_name = 'tasks/create_form.html'
 
     def get_context_data(self, **kwargs):
         context = super(CreateLabel, self).get_context_data(**kwargs)
@@ -143,7 +143,7 @@ class CreateLabel(LoginRequiredMixin, CreateView):
 
 class UpdateLabel(LoginRequiredMixin, UpdateView):
     form_class = CreateLabelForm
-    template_name = 'tasks/confirm_delete.html'
+    template_name = 'tasks/create_form.html'
     model = Label
 
     def get_context_data(self, **kwargs):
