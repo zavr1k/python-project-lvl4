@@ -13,6 +13,7 @@ from django_filters.views import FilterView
 from tasks.filters import TaskFilter
 from tasks.forms import CreateTaskForm, CreateLabelForm
 from tasks.models import Task, Label
+from users.models import TaskUser
 
 
 class Home(View):
@@ -67,7 +68,7 @@ class CreateTask(LoginRequiredMixin, CreateView):
         return context
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.author = TaskUser.objects.get(id=self.request.user.id)
         return super().form_valid(form)
 
     def get_success_url(self):
