@@ -2,7 +2,6 @@ from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -12,8 +11,7 @@ from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django_filters.views import FilterView
 
 from tasks.filters import TaskFilter
-from tasks.forms import RegisterUserForm, CreateStatusForm, \
-    CreateTaskForm, CreateLabelForm
+from tasks.forms import CreateStatusForm, CreateTaskForm, CreateLabelForm
 from tasks.models import Status, Task, Label
 
 
@@ -24,85 +22,6 @@ class Home(View):
             'title': _('Менеджер задач')
         }
         return render(request, 'tasks/main.html', content)
-
-
-class UserList(ListView):
-    model = User
-    template_name = 'tasks/user_list.html'
-    context_object_name = 'users'
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = _('Пользователи')
-        return context
-
-
-class RegisterUser(CreateView):
-    form_class = RegisterUserForm
-    template_name = 'tasks/register.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(RegisterUser, self).get_context_data(**kwargs)
-        context['title'] = _('Регистрация')
-        context['button_text'] = _('Зарегистрировать')
-        return context
-
-    def get_success_url(self):
-        messages.success(
-         self.request,
-         _('Пользователь успешно зарегистрирован')
-        )
-        return reverse_lazy('login')
-
-
-class UpdateUser(LoginRequiredMixin, UpdateView):
-    model = User
-    template_name = 'tasks/register.html'
-    form_class = RegisterUserForm
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = _('Изменение пользователя')
-        context['button_text'] = _('Изменить')
-        return context
-
-    def dispatch(self, request, *args, **kwargs):
-        if kwargs['pk'] != self.request.user.pk:
-            messages.error(
-                self.request,
-                _("У вас нет прав для изменения другого пользователя"),
-            )
-            return redirect('user_list')
-        return super(UpdateUser, self).dispatch(request, *args, **kwargs)
-
-    def get_success_url(self):
-        messages.success(self.request, _('Пользователь успешно изменён'))
-        return reverse_lazy('user_list')
-
-
-class DeleteUser(LoginRequiredMixin, DeleteView):
-    model = User
-    template_name = 'tasks/confirm_delete.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = _('Удаление пользователя')
-        context['confirmation'] = \
-            _('Вы уверены что хотите удалить пользователя?')
-        return context
-
-    def dispatch(self, request, *args, **kwargs):
-        if kwargs['pk'] != self.request.user.pk:
-            messages.error(
-                self.request,
-                _("У вас нет прав для изменения другого пользователя"),
-            )
-            return redirect('user_list')
-        return super(DeleteUser, self).dispatch(self.request, *args, **kwargs)
-
-    def get_success_url(self):
-        messages.success(self.request, _("Пользователь успешно удалён"))
-        return reverse_lazy('user_list')
 
 
 class LoginUser(LoginView):
@@ -138,7 +57,7 @@ class StatusList(LoginRequiredMixin, ListView):
 
 class CreateStatus(CreateView):
     form_class = CreateStatusForm
-    template_name = 'tasks/create_form.html'
+    template_name = 'tasks/confirm_delete.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -153,7 +72,7 @@ class CreateStatus(CreateView):
 
 class UpdateStatus(LoginRequiredMixin, UpdateView):
     form_class = CreateStatusForm
-    template_name = 'tasks/create_form.html'
+    template_name = 'tasks/confirm_delete.html'
     model = Status
 
     def get_context_data(self, **kwargs):
@@ -197,7 +116,7 @@ class TaskList(LoginRequiredMixin, FilterView, ListView):
 
 class CreateTask(LoginRequiredMixin, CreateView):
     form_class = CreateTaskForm
-    template_name = 'tasks/create_form.html'
+    template_name = 'tasks/confirm_delete.html'
 
     def get_context_data(self, **kwargs):
         context = super(CreateTask, self).get_context_data(**kwargs)
@@ -216,7 +135,7 @@ class CreateTask(LoginRequiredMixin, CreateView):
 
 class UpdateTask(LoginRequiredMixin, UpdateView):
     form_class = CreateTaskForm
-    template_name = 'tasks/create_form.html'
+    template_name = 'tasks/confirm_delete.html'
     model = Task
 
     def get_context_data(self, **kwargs):
@@ -267,7 +186,7 @@ class LabelList(LoginRequiredMixin, ListView):
 
 class CreateLabel(LoginRequiredMixin, CreateView):
     form_class = CreateLabelForm
-    template_name = 'tasks/create_form.html'
+    template_name = 'tasks/confirm_delete.html'
 
     def get_context_data(self, **kwargs):
         context = super(CreateLabel, self).get_context_data(**kwargs)
@@ -282,7 +201,7 @@ class CreateLabel(LoginRequiredMixin, CreateView):
 
 class UpdateLabel(LoginRequiredMixin, UpdateView):
     form_class = CreateLabelForm
-    template_name = 'tasks/create_form.html'
+    template_name = 'tasks/confirm_delete.html'
     model = Label
 
     def get_context_data(self, **kwargs):
