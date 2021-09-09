@@ -11,8 +11,8 @@ from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django_filters.views import FilterView
 
 from tasks.filters import TaskFilter
-from tasks.forms import CreateStatusForm, CreateTaskForm, CreateLabelForm
-from tasks.models import Status, Task, Label
+from tasks.forms import CreateTaskForm, CreateLabelForm
+from tasks.models import Task, Label
 
 
 class Home(View):
@@ -42,64 +42,6 @@ def logout_user(request):
     logout(request)
     messages.info(request, _('Вы разлогинены'))
     return redirect('main')
-
-
-class StatusList(LoginRequiredMixin, ListView):
-    model = Status
-    template_name = 'tasks/status_list.html'
-    context_object_name = 'statuses'
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = _('Статусы')
-        return context
-
-
-class CreateStatus(CreateView):
-    form_class = CreateStatusForm
-    template_name = 'tasks/confirm_delete.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = _('Создать статус')
-        context['button_text'] = _('Создать')
-        return context
-
-    def get_success_url(self):
-        messages.success(self.request, _('Статус успешно создан'))
-        return reverse_lazy('status_list')
-
-
-class UpdateStatus(LoginRequiredMixin, UpdateView):
-    form_class = CreateStatusForm
-    template_name = 'tasks/confirm_delete.html'
-    model = Status
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = _('Изменение статуса')
-        context['button_text'] = _('Изменить')
-        return context
-
-    def get_success_url(self):
-        messages.success(self.request, _('Статус успешно изменён'))
-        return reverse_lazy('status_list')
-
-
-class DeleteStatus(LoginRequiredMixin, DeleteView):
-    model = Status
-    template_name = 'tasks/confirm_delete.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = _('Удаление статуса')
-        context['confirmation'] = \
-            _('Вы уверены что хотите удалить статус?')
-        return context
-
-    def get_success_url(self):
-        messages.success(self.request, _('Статус успешно удалён'))
-        return reverse_lazy('status_list')
 
 
 class TaskList(LoginRequiredMixin, FilterView, ListView):

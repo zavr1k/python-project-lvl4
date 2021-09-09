@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'tasks.apps.TasksConfig',
     'users.apps.UsersConfig',
+    'statuses.apps.StatusesConfig',
     'django_filters'
 ]
 

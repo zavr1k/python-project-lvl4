@@ -3,26 +3,10 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
 
-class Status(models.Model):
-    name = models.CharField(
-        max_length=255,
-        unique=True,
-    )
-    time_create = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager()
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = _('Статус')
-        verbose_name_plural = _('Статусы')
-
-
 class Task(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField(blank=True)
-    status = models.ForeignKey('Status', on_delete=models.RESTRICT)
+    status = models.ForeignKey('statuses.Status', on_delete=models.RESTRICT)
     labels = models.ManyToManyField('Label', blank=True, related_name='tasks')
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
                                related_name='author',
