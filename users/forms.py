@@ -4,7 +4,6 @@ from .models import TaskUser
 
 
 class RegisterUserForm(UserCreationForm):
-
     class Meta:
         model = TaskUser
         fields = ('first_name',
