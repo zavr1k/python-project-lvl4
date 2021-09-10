@@ -1,13 +1,11 @@
 from django.urls import path
 
-from .views import Home, LoginUser, logout_user, \
+from .views import Home, \
     TaskList, CreateTask, UpdateTask, DeleteTask
 
 
 urlpatterns = [
     path('', Home.as_view(), name='main'),
-    path('login/', LoginUser.as_view(), name='login'),
-    path('logout/', logout_user, name='logout'),
     path('tasks/', TaskList.as_view(), name='task_list'),
     path('tasks/create/', CreateTask.as_view(), name='create_task'),
     path('tasks/<int:pk>/update/', UpdateTask.as_view(), name='update_task'),

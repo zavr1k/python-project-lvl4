@@ -1,8 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import logout
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
@@ -12,7 +9,7 @@ from django_filters.views import FilterView
 
 from tasks.filters import TaskFilter
 from tasks.forms import CreateTaskForm
-from tasks.models import Task, Label
+from tasks.models import Task
 from users.models import TaskUser
 
 
@@ -23,26 +20,6 @@ class Home(View):
             'title': _('Менеджер задач')
         }
         return render(request, 'tasks/main.html', content)
-
-
-class LoginUser(LoginView):
-    form = AuthenticationForm
-    template_name = 'tasks/login.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(LoginUser, self).get_context_data(**kwargs)
-        context['title'] = _('Вход')
-        return context
-
-    def get_success_url(self):
-        messages.success(self.request, _('Вы залогинены'))
-        return reverse_lazy('main')
-
-
-def logout_user(request):
-    logout(request)
-    messages.info(request, _('Вы разлогинены'))
-    return redirect('main')
 
 
 class TaskList(LoginRequiredMixin, FilterView, ListView):
@@ -114,6 +91,3 @@ class DeleteTask(LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         messages.success(self.request, _("Задача успешно удалена"))
         return reverse_lazy('task_list')
-
-
-

@@ -18,9 +18,13 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from users.views import LoginUser
+from users.views import logout_user
 
 urlpatterns = [
     path('', include('tasks.urls')),
+    path('login/', LoginUser.as_view(), name='login'),
+    path('logout/', logout_user, name='logout'),
     path('users/', include('users.urls')),
     path('statuses/', include('statuses.urls')),
     path('labels/', include('labels.urls')),
