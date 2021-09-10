@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from tasks.models import Task, Label
+from tasks.models import Task
 from django.utils.translation import gettext_lazy as _
 
 
@@ -15,11 +15,3 @@ class CreateTaskForm(ModelForm):
             'status': _('Статус'),
             'labels': _('Метки')
         }
-
-
-class CreateLabelForm(ModelForm):
-
-    class Meta:
-        model = Label
-        fields = ('name',)
-        labels = {'name': _('Имя')}
