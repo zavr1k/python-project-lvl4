@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views import View
-from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 from django_filters.views import FilterView
 
 from tasks.filters import TaskFilter
@@ -22,6 +22,17 @@ class Home(View):
         return render(request, 'tasks/main.html', content)
 
 
+class TaskDetailView(DetailView):
+    model = Task
+    template_name = 'tasks/task_details.html'
+    context_object_name = 'task'
+
+    def get_context_data(self, **kwargs):
+        context = super(TaskDetailView, self).get_context_data(**kwargs)
+        context['title'] = _('Просмотр задачи')
+        return context
+
+
 class TaskList(LoginRequiredMixin, FilterView, ListView):
     model = Task
     template_name = 'tasks/task_list.html'
@@ -36,7 +47,7 @@ class TaskList(LoginRequiredMixin, FilterView, ListView):
 
 class CreateTask(LoginRequiredMixin, CreateView):
     form_class = CreateTaskForm
-    template_name = 'tasks/create_form.html'
+    template_name = 'tasks/create_task.html'
 
     def get_context_data(self, **kwargs):
         context = super(CreateTask, self).get_context_data(**kwargs)
@@ -55,7 +66,7 @@ class CreateTask(LoginRequiredMixin, CreateView):
 
 class UpdateTask(LoginRequiredMixin, UpdateView):
     form_class = CreateTaskForm
-    template_name = 'tasks/create_form.html'
+    template_name = 'tasks/create_task.html'
     model = Task
 
     def get_context_data(self, **kwargs):
@@ -71,7 +82,7 @@ class UpdateTask(LoginRequiredMixin, UpdateView):
 
 class DeleteTask(LoginRequiredMixin, DeleteView):
     model = Task
-    template_name = 'tasks/confirm_delete.html'
+    template_name = 'tasks/delete_task.html'
 
     def get_context_data(self, **kwargs):
         context = super(DeleteTask, self).get_context_data(**kwargs)
