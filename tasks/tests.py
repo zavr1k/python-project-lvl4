@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 
 from statuses.models import Status
 from tasks.filters import TaskFilter
-from tasks.models import Task, Label
+from tasks.models import Task
 
 User = get_user_model()
 
