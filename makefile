@@ -1,5 +1,5 @@
 lint:
-		poetry run python -m flake8 --exclude=migrations tasks users statuses labels
+		poetry run flake8 --exclude=migrations tasks statuses labels users task_manager
 install:
 		poetry install
 

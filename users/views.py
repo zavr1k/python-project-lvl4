@@ -38,8 +38,8 @@ class RegisterUser(CreateView):
 
     def get_success_url(self):
         messages.success(
-         self.request,
-         _('Пользователь успешно зарегистрирован')
+            self.request,
+            _('Пользователь успешно зарегистрирован')
         )
         return reverse_lazy('login')
 

@@ -22,4 +22,4 @@ urlpatterns = [
     path('<int:pk>/delete/',
          DeleteStatus.as_view(),
          name='delete_status'),
-    ]
+]
