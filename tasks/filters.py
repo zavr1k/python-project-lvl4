@@ -1,13 +1,12 @@
-import django_filters
-from django import forms
+from django_filters import BooleanFilter, FilterSet
+from django.forms import CheckboxInput
 from tasks.models import Task
 
 
-class TaskFilter(django_filters.FilterSet):
+class TaskFilter(FilterSet):
 
-    self_tasks = django_filters.BooleanFilter(field_name='author',
-                                              widget=forms.CheckboxInput,
-                                              method='get_self_tasks')
+    self_tasks = BooleanFilter(widget=CheckboxInput,
+                               method='get_self_tasks')
 
     class Meta:
         model = Task
