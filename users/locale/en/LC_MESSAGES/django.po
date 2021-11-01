@@ -1,0 +1,98 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-01 10:42+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: users/templates/users/delete.html:10
+msgid "Да, удалить"
+msgstr "Yes, remove"
+
+#: users/templates/users/login.html:11
+msgid "Войти"
+msgstr "Login"
+
+#: users/templates/users/users_list.html:12
+msgid "Имя пользователя"
+msgstr "User name"
+
+#: users/templates/users/users_list.html:13
+msgid "Полное имя"
+msgstr "Full name"
+
+#: users/templates/users/users_list.html:14
+msgid "Дата создания"
+msgstr "Date of creation"
+
+#: users/templates/users/users_list.html:26 users/views.py:55
+msgid "Изменить"
+msgstr "Change"
+
+#: users/templates/users/users_list.html:28
+msgid "Удалить"
+msgstr "Remove"
+
+#: users/views.py:25
+msgid "Пользователи"
+msgstr "Users"
+
+#: users/views.py:35
+msgid "Регистрация"
+msgstr "Registration"
+
+#: users/views.py:36
+msgid "Зарегистрировать"
+msgstr "Register"
+
+#: users/views.py:42
+msgid "Пользователь успешно зарегистрирован"
+msgstr "User registered successfully"
+
+#: users/views.py:54
+msgid "Изменение пользователя"
+msgstr "Change user"
+
+#: users/views.py:62 users/views.py:87
+msgid "У вас нет прав для изменения другого пользователя"
+msgstr "You do not have permissions to modify another user"
+
+#: users/views.py:68
+msgid "Пользователь успешно изменён"
+msgstr "User changed successfully"
+
+#: users/views.py:78
+msgid "Удаление пользователя"
+msgstr "Delete user"
+
+#: users/views.py:80
+msgid "Вы уверены что хотите удалить пользователя?"
+msgstr "Are you sure you want to remove user?"
+
+#: users/views.py:93
+msgid "Пользователь успешно удалён"
+msgstr "User removed successfully"
+
+#: users/views.py:103
+msgid "Вход"
+msgstr "Login"
+
+#: users/views.py:107
+msgid "Вы залогинены"
+msgstr "You are logged in"
+
+#: users/views.py:113
+msgid "Вы разлогинены"
+msgstr "You are logged out"
