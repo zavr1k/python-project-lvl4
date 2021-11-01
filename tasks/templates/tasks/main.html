@@ -1,4 +1,23 @@
 {% extends 'tasks/base.html' %}
 {% load bootstrap4 %}
+{% load i18n %}
+{% load static %}
 {% block title %} {{ title }} {% endblock %}
-{% block content %}{% endblock %}
+{% block content %}
+<div class="container wrapper flex-grow-1">
+    <div class="card">
+        <div class="card-body">
+            <div class="display-4">{% translate 'Менеджер задач' %}</div>
+            <p class="lead">{% translate "Это приложение для планирования задач." %}</p>
+            <hr>
+            <h4>{% translate "Описание." %}</h4>
+            <p>{% translate "Диспетчер задач - это система управления задачами. Он позволяет ставить задачи, назначать исполнителей и изменять их статусы. Для работы требуются регистрация и аутентификация." %}
+            <img src="{% static 'tasks/images/tmanager.png' %}" class="p-4 img-fluid" alt="Example of tasks">
+            <img src="{% static 'tasks/images/registration.png' %}" class="p-4 img-fluid" alt="Example of tasks">
+            <img src="{% static 'tasks/images/create-task.png' %}" class="p-4 img-fluid" alt="Example of tasks">
+            <hr>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
