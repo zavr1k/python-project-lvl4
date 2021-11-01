@@ -74,7 +74,7 @@ msgstr "Tasks manager"
 
 #: tasks/templates/tasks/main.html:11
 msgid "Это приложение для планирования задач."
-msgstr ""
+msgstr "This is a task scheduling app."
 
 #: tasks/templates/tasks/main.html:13
 #, fuzzy
@@ -88,6 +88,9 @@ msgid ""
 "задачи, назначать исполнителей и изменять их статусы. Для работы требуются "
 "регистрация и аутентификация."
 msgstr ""
+"Task manager is task management system. "
+"It allows you to set tasks, performer and change their statuses. "
+"Requires registration and authentication to work."
 
 #: tasks/templates/tasks/task_details.html:17
 #: tasks/templates/tasks/task_list.html:22
